@@ -3,14 +3,17 @@
 
 //Step one
 let quotes_url = "http://localhost:3000/quotes?_embed=likes"
+let mainQuoteBody = document.querySelector("#quote-list")
 
 document.addEventListener('DOMContentLoaded', setUpPage)
+
 
 function setUpPage(){
     fetchQuotes()
     makeQuoteCard()
-   // document.addEventListener("click", handleAddPokemon
-
+    // document.addEventListener('click',createQuoteCard)
+    let newForm = document.getElementsByClassName("new-quote-form")
+    newForm.addEventListener("click", createQuoteCard)   
 }
 function fetchQuotes(){
     fetch(quotes_url)
@@ -33,12 +36,23 @@ function makeQuoteCard(element) {
       
       <footer class="blockquote-footer">${element.author}</footer>
       <br>
-      <button class='btn-success'>Likes: <span>${element.likes}</span></button>
+      <button class='btn-success'>Likes: <span>${element.likes.length}</span></button>
       <button class='btn-danger'>Delete</button>
     </blockquote>
   </li>`
-
-    let mainQuoteBody = document.querySelector("#quote-list")
+    // console.log(element[0].likes);
     mainQuoteBody.innerHTML += quoteCard
-    
+}
+
+function createQuoteCard(e) {
+        //push new data to the db and re - render the page // fetch ?
+        e.preventDefault()
+        let newQuoteForm = document.querySelector(".form-control").innerText
+        let newQuote = {}
+        newQuote.quote = newQuoteForm.innerHTML
+        //append to mainQuoteBody
+        mainQuoteBody.innerHTML += newQuote
+        makeQuoteCard(newQuote)
+        // console.log(newQuote);
+
 }
