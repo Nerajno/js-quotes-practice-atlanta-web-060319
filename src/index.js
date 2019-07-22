@@ -56,3 +56,20 @@ function createQuoteCard(e) {
         // console.log(newQuote);
 
 }
+// there was an idea .
+// function create(data) {
+//   let options = {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(data)
+//   }
+//   return fetch(baseUrl, options)
+//     .then((response) => response.json)
+// }
+// create({title: "check it out", author: "Mike"})
+// // the server will return the object back with an id
+// {id: 3, title: "check it out", author: "Mike"}
+
+//
