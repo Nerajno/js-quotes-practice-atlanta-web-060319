@@ -15,18 +15,30 @@ function setUpPage(){
 function fetchQuotes(){
     fetch(quotes_url)
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(addAllQuotes)
+
 }
 
-function makeQuoteCard() {
-    `<li class='quote-card'>
+let addAllQuotes = (quotes) => {
+    console.log("quote", quotes);
+    quotes.forEach(makeQuoteCard)
+  
+}
+
+function makeQuoteCard(element) {
+    // debugger
+   let quoteCard =  `<li class='quote-card'>
     <blockquote class="blockquote">
-      <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      <footer class="blockquote-footer">Someone famous</footer>
+      <p class="mb-0">${element.quote}</p>
+      
+      <footer class="blockquote-footer">${element.author}</footer>
       <br>
-      <button class='btn-success'>Likes: <span>0</span></button>
+      <button class='btn-success'>Likes: <span>${element.likes}</span></button>
       <button class='btn-danger'>Delete</button>
     </blockquote>
   </li>`
+
+    let mainQuoteBody = document.querySelector("#quote-list")
+    mainQuoteBody.innerHTML += quoteCard
     
 }
